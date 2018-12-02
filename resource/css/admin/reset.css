@@ -1,0 +1,164 @@
+@charset "utf-8";
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  font: inherit;
+  box-sizing: border-box;
+  font-family: 'Nanum Barun Gothic';
+}
+
+fieldset {
+  border: 0;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+b {
+  font-weight: bold;
+}
+
+button {
+  font: inherit;
+  border: 0;
+  /*text-decoration: none;
+  background: none;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  cursor: pointer;
+  */
+}
+
+input {
+  box-sizing: border-box;outline:0;outline:0;
+}
+input::-webkit-input-placeholder { color: #ccc; }
+textarea {
+  box-sizing: border-box;
+}
+
+.no-reset ul, .format-docs ul {
+  list-style-type: disc;
+  list-style-position: inside;
+}
+.no-reset ol, .format-docs ol {
+  list-style-type: decimal;
+  list-style-position: inside;
+}
+.no-reset ul ul, .no-reset ol ul, .format-docs ul ul, .format-docs ol ul {
+  list-style-type: circle;
+  list-style-position: inside;
+  margin-left: 15px;
+}
+.no-reset ol ol, .no-reset ul ol, .format-docs ol ol, .format-docs ul ol {
+  list-style-type: lower-latin;
+  list-style-position: inside;
+  margin-left: 15px;
+}
+.no-reset h1, .format-docs h1 {
+  font-size: 2em;
+}
+.no-reset h2, .format-docs h2 {
+  font-size: 1.5em;
+}
+.no-reset h3, .format-docs h3 {
+  font-size: 1.17em;
+}
+.no-reset h4, .format-docs h4 {
+  font-size: 1.12em;
+}
+.no-reset h5, .format-docs h5 {
+  font-size: .83em;
+}
+.no-reset h6, .format-docs h6 {
+  font-size: .75em;
+}
+.no-reset h1, .no-reset h2, .no-reset h3, .no-reset h4, .no-reset h5, .no-reset h6, .no-reset strong, .no-reset b, .format-docs h1, .format-docs h2, .format-docs h3, .format-docs h4, .format-docs h5, .format-docs h6, .format-docs strong, .format-docs b {
+  /*bringing boldness back to headers and the strong element*/
+  font-weight: bold;
+}
+
+/* ie8 <a> child <img> border bug fix */
+a img {
+  border: none;
+}
+
+button {
+  outline: inherit;
+}
+/* **************************** //필수 CSS 수정 및 삭제 불가 **************************** */
+/* tag reset */
+
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,img { margin:0; padding:0; font-family: 'Nanum Barun Gothic';}
+html { width:100%; height:100%;  }
+body,code {}
+body#popup { min-width:0;   }
+li { list-style:none;  }
+img,fieldset { border:none; vertical-align:top;  }
+table { width:100%; border:0; border-spacing:0; border-collapse:collapse; }
+caption { display:none;  }
+th,td { border:0; vertical-align:middle;  }
+input,select,textarea { font-size:100%; vertical-align:middle;}
+select { height:24px; outline:0;}
+textarea { padding:5px 6px; line-height:1.5;  }
+legend { visibility:hidden; position:absolute; left:-9999px; top:-9999px; width:0; height:0; line-height:0;  }
+button { overflow:visible; padding:0; margin:0; border:0; cursor:pointer;  }
+hr.layout { display:none;  }
+a { text-decoration:none; }
+a:hover { text-decoration:none;  }
+a:active { text-decoration:none;  }
+.objHidden { visibility:hidden; position:absolute; left:-1000px; top:-1000px; height:0; width:0;  }
+table tr.radioType input,
+span.noBorder input { border:none !important; width:auto !important; height:auto !important; margin:0 3px 0 0 !important; vertical-align:middle !important; background:none !important; }
+#content_CONTAINER td { width:auto !important; }
+table.nneditor-table { width:auto !important; }

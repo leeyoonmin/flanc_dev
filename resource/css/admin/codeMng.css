@@ -1,0 +1,4 @@
+.divCommonCodePopup{width:500px;}
+.divCommonCodePopup table td{padding:8px; border:1px solid #eee; text-align:center;}
+.divCommonCodePopup table td:first-of-type{width:100px;}
+.divCommonCodePopup .saveBtn{margin:8px; float:right;}

@@ -1,0 +1,6 @@
+.bannerMng td img{height:50px; width:100px;} 
+
+.addBanner td{padding:8px; border:1px solid #ddd; background-color:#fff;}
+.addBanner td.head{background-color:#e5eff6; width:150px; text-align:center;}
+.addBanner .previewTR td img{width:100%; min-height:50px;}
+.addBanner .divSubmit{padding-top:8px; text-align:right;}

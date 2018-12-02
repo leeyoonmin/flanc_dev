@@ -1,0 +1,100 @@
+body{color:#252626; font-size:0;}
+a{color:#252626;}
+a:link {color:#252626;}
+a:visited {color:#252626;}
+a:active {color:#252626;}
+.wrap{width:100%; height:100%; font-size:0;}
+.division_line{margin:24px 0px; border:1px solid #eee;}
+.cursor{cursor:pointer;}
+/*********************************************************************************************************************
+    OFFSET
+*********************************************************************************************************************/
+.width_33_per{width:33.33%;}
+.width_50_per{width:50%;}
+.width_100_per{width:100%;}
+.pad_8px{padding:8px;}
+.pad_16px{padding:16px;}
+
+/*********************************************************************************************************************
+    TYPOGRAPHY
+*********************************************************************************************************************/
+
+.typo.title.large{font-size:46px; font-weight:400;}
+.typo.title.base{font-size:32px; font-weight:400;}
+.typo.title.small{font-size:28px; font-weight:400;}
+.typo.normal.large{font-size:20px; font-weight:400;}
+.typo.normal.base{font-size:16px; font-weight:400;}
+.typo.normal.small{font-size:12px; font-weight:400;}
+/*********************************************************************************************************************
+    BUTTON
+*********************************************************************************************************************/
+.btn{font-size:16px; border:1px solid #252626; background-color:#fff; padding:8px 16px 6px 16px; cursor:pointer; box-shadow:5px 10px 10px rgba(0,0,0,.05); border-radius:2px;}
+.btn.red{background:#f2405d; border:1px solid #f2405d; color:#fff; box-shadow:5px 10px 10px rgba(0,0,0,.05);}
+.btn.blue{background:#5f93e7; border:1px solid #5f93e7; color:#fff; box-shadow:5px 10px 10px rgba(0,0,0,.05);}
+.btn.green{background:#43da86; border:1px solid #43da86; color:#fff; box-shadow:5px 10px 10px rgba(0,0,0,.05);}
+.btn.yellow{background:#ffb721; border:1px solid #ffb721; color:#fff; box-shadow:5px 10px 10px rgba(0,0,0,.05);}
+.btn.base{width:100px;}
+.btn.large{width:200px; padding:12px 0px 10px 0px;}
+.btn.full{width:100%; padding:12px 0px 10px 0px;}
+/*********************************************************************************************************************
+    콘텐츠 컨테이너
+*********************************************************************************************************************/
+
+
+
+
+/*********************************************************************************************************************
+    스타일 시트 페이지 CSS
+*********************************************************************************************************************/
+.divComponentTitle{font-size:32px; margin-bottom:16px;}
+.divComponentSubTitle{font-size:16px; margin-bottom:16px; margin-left:16px;}
+.component{width:100%; padding:16px; border:1px solid #ddd; background:#fff; margin-bottom:32px;}
+.component .btn{margin-bottom:12px;}
+.component.button table td{width:20%; text-align:center;}
+.component.button table .head td{color:#179ccd; font-size:20px; padding:16px 0px;}
+.typo{margin-bottom:16px;}
+.typo_head{display:inline-block; color:#179ccd; margin-right:16px; font-size:20px; font-weight:400; min-width:200px; line-height:50px;}
+
+/*********************************************************************************************************************
+    모바일 CSS
+*********************************************************************************************************************/
+@media screen and (max-width:1024px){
+  .pc{display:none;}
+  .contents_container{width:100%; min-height:100vh; background-color:#f5f5f5;}
+  .contents_container .contents_section{width:360px; min-height:100vh; margin:auto;}
+
+  /*모바일 탑 헤더*/
+  .divFixedTopHeader{position:fixed; width:100%; background-color:#fff; box-shadow:5px 10px 10px rgba(0,0,0,0.05); z-index:50; top:0;}
+  .divFixedTopHeaderBG{width:100%; height:48px;}
+  .divFixedTopHeader td{padding:11px;}
+  .divFixedTopHeader .divHamburgerBtn{width:50px;}
+  .divFixedTopHeader .divHamburgerBtn .bar{width:100%; background-color:#666; padding:3px; margin-bottom:4px; border-radius:2px;}
+  .divFixedTopHeader .divHamburgerBtn .bar:last-of-type{margin-bottom:0px;}
+  .divFixedTopHeader .divHamburgerBtn .bar.bar1{width:85%;}
+  .divFixedTopHeader .divHamburgerBtn .bar.bar2{width:65%;}
+  .divFixedTopHeader .divHamburgerBtn .bar.bar3{width:100%;}
+  .divFixedTopHeader .divLogoBtn{}
+  .divFixedTopHeader .divEmpty{width:50px;}
+
+  /*모바일 슬라이드 메뉴*/
+  .divSlideMenu{width:300px; height:100vh; position:fixed; top:0; z-index:60; background-color:#fff; box-shadow:10px 10px 10px rgba(0,0,0,0.05); left:-310px;}
+  .divSlideMenuBG{width:100vw; height:100vh; background-color:rgba(0,0,0,0.0); position:fixed; top:0; z-index:55; display:none;}
+  .divSlideMenu .closeBtn{width:50px; padding:18px;}
+  .divSlideMenu .closeBtn img{width:100%;}
+  .divSlideMenu .divSlideMenuList{width:95%; margin:auto;}
+  .divSlideMenu .divSlideMenuList td{font-size:16px; text-align:center; border:1px solid #eee;}
+
+  .divCard{width:95%; margin:auto; margin-bottom:12px; background-color:#fff; box-shadow:10px 10px 10px rgba(0,0,0,0.05); border-radius:4px;}
+
+
+}
+
+/*********************************************************************************************************************
+    데스크톱 CSS
+*********************************************************************************************************************/
+@media all and (min-width: 1025px) {
+  .m{display:none;}
+  .contents_container{width:100vw; min-height:100vh; background-color:#f5f5f5; padding:80px; position:relative; top:-14px;}
+  .contents_container .contents_section{width:1200px; margin:auto;}
+
+}

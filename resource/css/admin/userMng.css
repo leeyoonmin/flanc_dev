@@ -1,0 +1,7 @@
+.modifyUserLevel .divButton .SELECT_USER_LEVEL{width:100px; padding: 4px 12px 8px 8px;}
+
+.divInquiryUserPopup{width:500px;}
+.divInquiryUserPopup table td{padding:8px; border:1px solid #eee; text-align:center;}
+.divInquiryUserPopup table td:first-of-type{width:100px;}
+.divInquiryUserPopup .saveBtn{margin:8px; float:right;}
+.plusBtn

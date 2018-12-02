@@ -1,0 +1,45 @@
+.addProduct .divGridTabMenu .menu{width:200px; border:1px solid #ddd; padding:16px; text-align:center; cursor:pointer; background-color:#fff; border-bottom:0;}
+.addProduct .divGridTabMenu .menu.selected{transition:200ms; background: linear-gradient(to right bottom, #4facfe, #00f2fe); color:#fff;}
+.addProduct .divGridTab{width:100%; padding:16px; border:1px solid #ddd; background-color:#fff;}
+.addProduct .divGridTab.subscription{display:none;}
+.addProduct .divGridTab td{border:1px solid #ccc; text-align:center; padding:8px;}
+.addProduct .divGridTab td.head{background-color:#e5eff6; width:150px;}
+.addProduct .divGridTab .imageList{display:flex; flex-direction:row; text-align:center;}
+.addProduct .divGridTab td input[type="tel"]{border:1px solid #ddd; padding:8px; border-radius:2px; width:100%; color:#4c4c4c;}
+.addProduct .divGridTab td input[type="checkbox"]{margin-right:8px; width:16px; height:16px; margin-bottom:2px;}
+.addProduct .divGridTab td label{margin-right:16px;}
+.addProduct .divGridTab td.checkbox{text-align:left; padding:16px;}
+.addProduct .divGridTab td.OPTIONS{text-align:left;}
+.addProduct .divGridTab td.OPTIONS .divOption{display:inline-block; border:1px solid #ddd; background-color:#fff; padding:4px 4px 4px 8px; margin-top:8px; margin-right:8px; line-height:24px;}
+.addProduct .divGridTab td.OPTIONS .divOption img{width:24px; height:24px; margin-left:8px; padding:4px; background-color:#ccc}
+.addProduct .divGridTab tr.titleTR td{border:0; text-align:left; font-size:18px; font-weight:bold; padding-top:16px;}
+.addProduct .divGridTab tr.emptyTR td{border-left:0; border-right:0;}
+.addProduct .divGridTab td.OPTIONS .divOptionValue{padding:4px; position:fixed; border:1px solid #ddd; background-color:#fff59c; display:none;}
+
+.essentialMark{color:red; margin-right:8px;}
+.divAddImg{display:inline-block; width:150px; height:182px; text-align:center; border:1px solid #ccc; margin-right:8px;}
+.divAddImg img{width:132px; height:132px; margin-bottom:8px; margin:8px; border:1px solid #ddd;}
+.divAddImg input{font-size:12px; width:68px;}
+
+.divSubmit{text-align:right; padding-top:16px;}
+
+.productList .divGrid .PRD_NAME_TD{text-decoration:underline;}
+
+.modifyProduct .divGridTabMenu .menu{width:200px; border:1px solid #ddd; padding:16px; text-align:center; cursor:pointer; background-color:#fff; border-bottom:0;}
+.modifyProduct .divGridTabMenu .menu.selected{transition:200ms; background: linear-gradient(to right bottom, #4facfe, #00f2fe); color:#fff;}
+.modifyProduct .divGridTab{width:100%; padding:16px; border:1px solid #ddd; background-color:#fff;}
+.modifyProduct .divGridTab.subscription{display:none;}
+.modifyProduct .divGridTab td{border:1px solid #ccc; text-align:center; padding:8px;}
+.modifyProduct .divGridTab td.head{background-color:#e5eff6; width:150px;}
+.modifyProduct .divGridTab .imageList{display:flex; flex-direction:row; text-align:center;}
+.modifyProduct .divGridTab td input[type="tel"]{border:1px solid #ddd; padding:8px; border-radius:2px; width:100%; color:#4c4c4c;}
+.modifyProduct .divGridTab td input[type="checkbox"]{margin-right:8px; width:16px; height:16px; margin-bottom:2px;}
+.modifyProduct .divGridTab td label{margin-right:16px;}
+.modifyProduct .divGridTab td.checkbox{text-align:left; padding:16px;}
+.modifyProduct .divGridTab td.OPTIONS{text-align:left;}
+.modifyProduct .divGridTab td.OPTIONS .divOption{display:inline-block; border:1px solid #ddd; background-color:#fff; padding:4px 4px 4px 8px; margin-top:8px; margin-right:8px; line-height:24px;}
+.modifyProduct .divGridTab td.OPTIONS .divOption img{width:24px; height:24px; margin-left:8px; padding:4px; background-color:#ccc}
+.modifyProduct .divGridTab tr.titleTR td{border:0; text-align:left; font-size:18px; font-weight:bold; padding-top:16px;}
+.modifyProduct .divGridTab tr.emptyTR td{border-left:0; border-right:0;}
+.modifyProduct .divGridTab td.OPTIONS .divOptionValue{padding:4px; position:fixed; border:1px solid #ddd; background-color:#fff59c; display:none;}
+.modifyProduct .divGridTab td .imgDeleteBtn{border:0; width:30px; padding:4px; background-color:#ed4824; color:#fff; cursor:pointer}
