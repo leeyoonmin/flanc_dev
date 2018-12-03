@@ -217,7 +217,7 @@ $('.productList .deleteBtn').click(function(e){
 
   $('.productList .divGrid .body .checkBox.checked').each(function(e){
     var dataSet = {idxkey:$(this).attr('idxkey')};
-    doAjaxSync('ajaxDeleteProduct',dataSet);
+    doAjaxSync('ajaxDeleteBanner',dataSet);
   });
   location.href="";
 });

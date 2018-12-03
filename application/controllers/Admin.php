@@ -75,7 +75,15 @@ class Admin extends CI_Controller {
     $this->_end_layout(array('layout','bannerMng'));
 	}
 
+  public function modifyBanner($BANNER_ID)//---------------------------------------------------> 배너추가 VIEW
+	{
+    $this->_start_layout(array('reset','layout','bannerMng'),'shopMng');
 
+    $BANNER_DATA = $this->admin_model->getBannerById($BANNER_ID);
+    $this->load->view('admin/shopMng/modifyBanner', array('BANNER_DATA'=>$BANNER_DATA));
+
+    $this->_end_layout(array('layout','bannerMng'));
+	}
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //                    회원관리 컨트롤러                                                                      //

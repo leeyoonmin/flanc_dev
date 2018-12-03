@@ -2,7 +2,7 @@
   <table class="divSlideTopHeader">
     <tr>
       <td></td>
-      <td class="closeBtn cursor"><img src="/resource/img/icon/ic_close.png"></td>
+      <td class="closeBtn cursor"><img src="/resource/img/icon/ic_close_gray.png"></td>
     </tr>
   </table>
   <table class="divSlideMenuList">

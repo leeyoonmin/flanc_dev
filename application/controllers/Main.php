@@ -37,7 +37,9 @@ class Main extends CI_Controller {
 		$this->_start_layout(array('reset','layout','main','swiper'));                          //-- 레이아웃 시작
 		//--------------------------------------------------------------------------------------------------------
 
-		$this->load->view('main');
+		$this->load->model('layout_model');
+		$BANNER_DATA = $this->layout_model->getMainBanner();
+		$this->load->view('main', array('BANNER_DATA'=>$BANNER_DATA));
 
 		//--------------------------------------------------------------------------------------------------------
 		$this->_end_layout(array('layout','swiper'));                                    //-- 레이아읏 끝

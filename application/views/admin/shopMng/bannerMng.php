@@ -45,7 +45,7 @@
         foreach($GRID_DATA as $item){
           echo "
           <tr class=\"body\">
-            <td class=\"checkBox\" idxkey=\"".$item->BANNER_ID."\">□</td>
+            <td class=\"checkBox\" idxkey=\"".$item->BANNER_ID."\" fileName=\"".$item->IMG_NAME.".".$item->IMG_EXTENSION."\">□</td>
             <td>".$item->BANNER_TYPE."</td>
             <td>".$item->BANNER_ORDER."</td>
             <td><img src=\"/resource/img/banner/".$item->IMG_NAME.".".$item->IMG_EXTENSION."\"></td>

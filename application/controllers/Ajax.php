@@ -58,44 +58,6 @@ class Ajax extends CI_Controller {
 			exit;
 		}
 
-		/*
-		if(true){
-
-			if($ext == "jpg" || $ext == "jpeg"){
-					$image = imagecreatefromjpeg($_FILES['PRD_IMG']['tmp_name']);
-			}else if($ext == "png"){
-					$image = imagecreatefrompng($_FILES['PRD_IMG']['tmp_name']);
-			}else if($ext == "bmp" || $ext == "wbmp"){
-					$image = imagecreatefromwbmp($_FILES['PRD_IMG']['tmp_name']);
-			}else if($ext == "gif"){
-					$image = imagecreatefromgif($_FILES['PRD_IMG']['tmp_name']);
-			}
-
-			if($ext != "png") $exif = exif_read_data($_FILES['PRD_IMG']['tmp_name']);
-			if(!empty($exif['Orientation'])) {
-					switch($exif['Orientation']) {
-							case 8:
-									$image = imagerotate($image,90,0);
-									break;
-							case 3:
-									$image = imagerotate($image,180,0);
-									break;
-							case 6:
-									$image = imagerotate($image,-90,0);
-									break;
-					}
-					if($ext == "jpg" || $ext == "jpeg"){
-							imagejpeg($image,$_FILES['PRD_IMG']['tmp_name']);
-					}else if($ext == "png"){
-							imagepng($image,$_FILES['PRD_IMG']['tmp_name']);
-					}else if($ext == "bmp" || $ext == "wbmp"){
-							imagewbmp($image,$_FILES['PRD_IMG']['tmp_name']);
-					}else if($ext == "gif"){
-							imagegif($image,$_FILES['PRD_IMG']['tmp_name']);
-					}
-				}
-			}
-			*/
 		// 파일 이동
 		move_uploaded_file( $_FILES['PRD_IMG']['tmp_name'], "$uploads_dir/$name.$ext");
 
@@ -114,8 +76,99 @@ class Ajax extends CI_Controller {
 			'IMG_SIZE' =>  ceil($_FILES['PRD_IMG']['size']/1024),
 			'LINK_URL'=>$postData['LINK_URL']
 		);
-		
+
 		$this->admin_model->addBannerInfo($param);
+
+		echo json_encode(array('result'=>true));
+	}
+
+	public function ajaxDeleteBanner(){
+    $BANNER_ID = $this->input->post('BANNER_ID');
+		$FILE_NAME = $this->input->post('FILE_NAME');
+		unlink('./resource/img/banner/'.$FILE_NAME);
+	  $this->admin_model->deleteBannerById($BANNER_ID);
+		echo json_encode(array('result'=>true));
+  }
+
+	public function ajaxModifyBannewr(){
+		$postData = $this->input->post();
+
+
+		if(!empty($_FILES)){
+
+		$uploads_dir = './resource/img/banner/';
+		$allowed_ext = array('jpg','jpeg','png','gif','JPG','JPEG','PNG','GIF');
+		$extArray = explode('.',$_FILES['PRD_IMG']['name']);
+		$ext = $extArray[1];
+		$name = $extArray[0];
+
+		if(!is_dir($uploads_dir)){
+			mkdir($uploads_dir,0777,true);
+		}
+
+		// 변수 정리
+		$error = $_FILES['PRD_IMG']['error'];
+
+		// 오류 확인
+		if( $error != UPLOAD_ERR_OK ) {
+			switch( $error ) {
+				case UPLOAD_ERR_INI_SIZE:
+				case UPLOAD_ERR_FORM_SIZE:
+					$this->load->view('module/alert', array('text'=>'파일이 너무 큽니다.'));
+					$this->load->view('module/redirect',  array('url'=>'/admin/addproduct'));
+					break;
+				case UPLOAD_ERR_NO_FILE:
+					$this->load->view('module/alert', array('text'=>'파일이 첨부되지 않았습니다.'));
+					$this->load->view('module/redirect',  array('url'=>'/admin/addproduct'));
+					break;
+				default:
+					$this->load->view('module/alert', array('text'=>'파일이 제대로 업로드되지 않았습니다.'));
+					$this->load->view('module/redirect',  array('url'=>'/admin/addproduct'));
+			}
+			exit;
+		}
+
+		// 확장자 확인
+		if( !in_array($ext, $allowed_ext) ) {
+			$this->load->view('module/alert', array('text'=>'허용되지 않는 확장자입니다.'));
+			$this->load->view('module/redirect',  array('url'=>'/admin/addproduct'));
+			exit;
+		}
+
+		// 파일 이동
+		move_uploaded_file( $_FILES['PRD_IMG']['tmp_name'], "$uploads_dir/$name.$ext");
+
+		// 파일 리사이즈 후 복사하기
+		$d = $this->compress("$uploads_dir/$name.$ext", "$uploads_dir/$name.$ext", 50);
+
+		}
+
+		if(!empty($_FILES)){
+			$param = array(
+				'BANNER_ID'=>$postData['BANNER_ID'],
+				'BANNER_TYPE'=>$postData['BANNER_TYPE'],
+				'BANNER_ORDER'=>$postData['BANNER_ORDER'],
+				'IMG_NAME'=>$name,
+				'IMG_EXTENSION' => $ext,
+				'IMG_SIZE' =>  ceil($_FILES['PRD_IMG']['size']/1024),
+				'LINK_URL'=>$postData['LINK_URL']
+			);
+		}else{
+			$param = array(
+				'BANNER_ID'=>$postData['BANNER_ID'],
+				'BANNER_TYPE'=>$postData['BANNER_TYPE'],
+				'BANNER_ORDER'=>$postData['BANNER_ORDER'],
+				'IMG_NAME'=>$postData['IMG_NAME'],
+				'IMG_EXTENSION' => $postData['IMG_EXTENSION'],
+				'IMG_SIZE' =>  $postData['IMG_SIZE'],
+				'LINK_URL'=>$postData['LINK_URL']
+			);
+		}
+
+		$this->admin_model->updateBanner($param);
+		if(!empty($_FILES)){
+			unlink('./resource/img/banner/'.$postData['IMG_NAME'].".".$postData['IMG_EXTENSION']);
+		}
 
 		echo json_encode(array('result'=>true));
 	}
@@ -199,46 +252,6 @@ class Ajax extends CI_Controller {
 			$this->load->view('module/redirect',  array('url'=>'/admin/addproduct'));
 			exit;
 		}
-
-
-		/*
-		if(true){
-
-			if($ext == "jpg" || $ext == "jpeg"){
-					$image = imagecreatefromjpeg($_FILES['PRD_IMG']['tmp_name']);
-			}else if($ext == "png"){
-					$image = imagecreatefrompng($_FILES['PRD_IMG']['tmp_name']);
-			}else if($ext == "bmp" || $ext == "wbmp"){
-					$image = imagecreatefromwbmp($_FILES['PRD_IMG']['tmp_name']);
-			}else if($ext == "gif"){
-					$image = imagecreatefromgif($_FILES['PRD_IMG']['tmp_name']);
-			}
-
-			if($ext != "png") $exif = exif_read_data($_FILES['PRD_IMG']['tmp_name']);
-			if(!empty($exif['Orientation'])) {
-					switch($exif['Orientation']) {
-							case 8:
-									$image = imagerotate($image,90,0);
-									break;
-							case 3:
-									$image = imagerotate($image,180,0);
-									break;
-							case 6:
-									$image = imagerotate($image,-90,0);
-									break;
-					}
-					if($ext == "jpg" || $ext == "jpeg"){
-							imagejpeg($image,$_FILES['PRD_IMG']['tmp_name']);
-					}else if($ext == "png"){
-							imagepng($image,$_FILES['PRD_IMG']['tmp_name']);
-					}else if($ext == "bmp" || $ext == "wbmp"){
-							imagewbmp($image,$_FILES['PRD_IMG']['tmp_name']);
-					}else if($ext == "gif"){
-							imagegif($image,$_FILES['PRD_IMG']['tmp_name']);
-					}
-				}
-			}
-		*/
 
 		// 파일 이동
 		move_uploaded_file( $_FILES['PRD_IMG']['tmp_name'], "$uploads_dir/$name");

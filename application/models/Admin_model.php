@@ -279,6 +279,52 @@ class Admin_model extends CI_Model {
     return $result;
   }
 
+  public function deleteBannerById($BANNER_ID){
+    $sql = "
+      DELETE FROM TB_BANNER_INFO
+      WHERE BANNER_ID = '".$BANNER_ID."'
+    ";
+    $result = $this->db->query($sql);
+    custlog('sql',__class__,__function__,$this->session->userdata('user_id'),$sql);
+    return $result;
+  }
+
+  public function getBannerById($BANNER_ID){
+    $sql = "
+      SELECT
+          BANNER_ID
+        , BANNER_TYPE
+        , BANNER_ORDER
+        , IMG_NAME
+        , IMG_EXTENSION
+        , IMG_SIZE
+        , LINK_URL
+        , CREATED
+        FROM TB_BANNER_INFO A
+        WHERE BANNER_ID = '".$BANNER_ID."'
+    ";
+    $result = $this->db->query($sql);
+    custlogR('sql',__class__,__function__,$this->session->userdata('user_id'),$sql,$result->result());
+    return $result->row();
+  }
+
+  public function updateBanner($param){
+    $sql = "
+      UPDATE TB_BANNER_INFO
+      SET BANNER_TYPE   = '".$param['BANNER_TYPE']."'
+        , BANNER_ORDER  = '".$param['BANNER_ORDER']."'
+        , IMG_NAME      = '".$param['IMG_NAME']."'
+        , IMG_EXTENSION = '".$param['IMG_EXTENSION']."'
+        , IMG_SIZE      = '".$param['IMG_SIZE']."'
+        , LINK_URL      = '".$param['LINK_URL']."'
+
+      WHERE BANNER_ID = '".$param['BANNER_ID']."'
+    ";
+    $result = $this->db->query($sql);
+    custlog('sql',__class__,__function__,$this->session->userdata('user_id'),$sql);
+    return $result;
+  }
+
   public function getUserDataGrid($param,$mode){
     $sql = "
       SELECT
