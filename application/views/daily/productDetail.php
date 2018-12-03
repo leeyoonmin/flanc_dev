@@ -37,12 +37,12 @@
           ";
         }
       echo "
-        <span>".$item->OPTION_NAME."</span><select class=\"SELECT_OPTION\" OPTION_ID=\"".$item->OPTION_ID."\" OPTION_PRICE=\"\" OPTION_CD=\"\">
+        <span>".$item->OPTION_NAME."</span><select class=\"SELECT_OPTION\" OPTION_NAME=\"".$item->OPTION_NAME."\" OPTION_VALUE=\"\" OPTION_PRICE=\"\" OPTION_ID=\"".$item->OPTION_ID."\">
           <option value=\"0000\">선택안함</option>
       ";
       }
 
-      echo "<option value=\"".$item->OPTION_CD."\" OPTION_PRICE=\"".$item->OPTION_PRICE."\">".$item->OPTION_VALUE."(+".number_format($item->OPTION_PRICE)."원)"."</option>";
+      echo "<option value=\"".$item->OPTION_CD."\" OPTION_VALUE=\"".$item->OPTION_VALUE."\" OPTION_PRICE=\"".$item->OPTION_PRICE."\">".$item->OPTION_VALUE."(+".number_format($item->OPTION_PRICE)."원)"."</option>";
 
       if($item->OPTION_ID != $PREV_OPTION_ID){
       $OPTION_CNT++;

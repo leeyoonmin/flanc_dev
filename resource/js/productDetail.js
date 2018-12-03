@@ -12,7 +12,7 @@ $('.productOption select').change(function(e){
         $(this).parents('select').attr('OPTION_PRICE',0);
       }else{
         $(this).parents('select').attr('OPTION_PRICE',Number($(this).attr('OPTION_PRICE')));
-        $(this).parents('select').attr('OPTION_CD',$(this).val());
+        $(this).parents('select').attr('OPTION_VALUE',$(this).attr('OPTION_VALUE'));
       }
     }
     $('.productOption select').each(function(e){
@@ -25,20 +25,22 @@ $('.productOption select').change(function(e){
 
 // [오늘의꽃] 상품상세 구매하기 버튼 클릭 이벤트
 $('.buyNowBtn').click(function(e){
+
   var PRD_ID = $('.divProductData .HD_PRD_ID').val();
+  var PRD_PRICE = $('.TT_PRICE').attr('ORIGIN');
+  var TT_PRICE = $('.TT_PRICE').text().replace(',','');
   var OPTION_ARR = new Array();
   var OPTION_CNT = 0;
   var dataSet = {};
   $('.productOption select').each(function(){
-    if($(this).attr('option_cd') != "" && $(this).attr('option_price') != ""){
-      OPTION_ARR[OPTION_CNT] = {OPTION_ID:$(this).attr('option_id'), OPTION_CD:$(this).attr('option_cd'), OPTION_PRICE:$(this).attr('option_price')};
+    if($(this).attr('OPTION_NAME') != "" && $(this).attr('OPTION_PRICE') != "" && $(this).attr('OPTION_VALUE') != ""){
+      OPTION_ARR[OPTION_CNT] = {OPTION_ID:$(this).attr('OPTION_ID'), OPTION_NAME:$(this).attr('OPTION_NAME'), OPTION_PRICE:$(this).attr('OPTION_PRICE'), OPTION_VALUE:$(this).attr('OPTION_VALUE')};
       OPTION_CNT++;
     }
   });
-  dataSet = {PRD_ID:PRD_ID, OPTION:OPTION_ARR};
-  console.log(dataSet);
-  //doAjaxSync('addCard',dataSet);
-
+  dataSet = {PRD_ID:PRD_ID, OPTION:OPTION_ARR, TT_PRICE:TT_PRICE, PRD_PRICE:PRD_PRICE};
+  doAjaxSync('/cart/addCart',dataSet);
+  //location.href="/cart";
 });
 
 // [오늘의꽃] 상품상세 장바구니 담기 버튼 클릭 이벤트

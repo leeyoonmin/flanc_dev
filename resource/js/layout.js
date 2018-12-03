@@ -48,7 +48,7 @@ function doAjaxSync(URL, dataSet){
   var returnData;
   $.ajax({
         type:"POST",
-        url:"/ajax/"+URL,
+        url:URL,
         data : dataSet,
         dataType : "json",
         async: false,
