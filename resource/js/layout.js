@@ -29,3 +29,35 @@ function openSlideMenu(type){
     $('.divSlideMenuBG').fadeOut();
   }
 }
+
+
+/***********************************************************
+        숫자 콤마 붙이는 로직
+***********************************************************/
+function commas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+/***************************************
+  Ajax 호출
+  PARAM
+  1 ) URL 명 (string)
+  2 ) 데이터 (ObjectArray)
+***************************************/
+function doAjaxSync(URL, dataSet){
+  var returnData;
+  $.ajax({
+        type:"POST",
+        url:"/ajax/"+URL,
+        data : dataSet,
+        dataType : "json",
+        async: false,
+        success: function(res){
+          returnData = res['data'];
+        },
+        error: function(xhr, status, error) {
+          returnData = ('ERRORS: ' + status);
+        }
+  });
+  return returnData;
+}

@@ -1,0 +1,7 @@
+.divCardList.title .divCard p{padding:16px; text-align:center;}
+.productList .divItem {width:48%; display:inline-block; margin-right:4%;}
+.productList .divItem:nth-of-type(even){margin-right:0;}
+.productList .divItem img{width:100%; border-radius: 4px 4px 0px 0px;}
+.productList .divItem .productInfo{padding:8px;}
+.productList .divItem .productInfo p{margin-bottom:8px;}
+.productList .divItem .productInfo p:last-of-type{margin-bottom:0;}

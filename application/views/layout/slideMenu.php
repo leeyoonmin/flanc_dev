@@ -7,7 +7,19 @@
   </table>
   <table class="divSlideMenuList">
     <tr>
-      <td class="width_50_per pad_8px cursor">로그인</td><td class="width_50_per pad_8px cursor">회원가입</td>
+      <td class="cursor">로그인</td>
+    </tr>
+    <tr>
+      <td class="cursor">회원가입</td>
+    </tr>
+    <tr>
+      <td class="cursor">정기구독</td>
+    </tr>
+    <tr>
+      <td class="cursor">오늘의꽃</td>
+    </tr>
+    <tr>
+      <td class="cursor">플라워플래너</td>
     </tr>
   </table>
 

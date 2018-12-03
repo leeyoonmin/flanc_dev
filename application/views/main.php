@@ -11,16 +11,28 @@
     </div>
   </div>
 
-  <div class="divCard mainCardMenu subscription cursor">
-    <p class="typo normal base">정기구독</p>
-  </div>
+  <div class="divCardList">
 
-  <div class="divCard mainCardMenu quickDelivery cursor">
-    <p class="typo normal base">오늘의 꽃</p>
-  </div>
 
-  <div class="divCard mainCardMenu flancPlanner cursor">
-    <p class="typo normal base">플랑 플레너</p>
+      <div class="divCard mainCardMenu subscription cursor">
+        <a href="/">
+          <p class="typo normal base">정기구독</p>
+        </a>
+      </div>
+
+
+    <div class="divCard mainCardMenu quickDelivery cursor">
+      <a href="/daily">
+        <p class="typo normal base">오늘의 꽃</p>
+      </a>
+    </div>
+
+    <div class="divCard mainCardMenu flancPlanner cursor">
+      <a href="/">
+        <p class="typo normal base">플랑 플레너</p>
+      </a>
+    </div>
+
   </div>
 
   <!-- Swiper JS -->

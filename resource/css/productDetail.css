@@ -1,0 +1,26 @@
+.productImage .productMainImage img{width:100%; border-radius:4px;}
+.productImage .productOtherImg{width:50px; display:inline-block; margin-right:12px; }
+.productImage .productOtherImg:last-of-type{margin-right:0px;}
+.productImage .productOtherImg img{width:100%; border-radius:4px;}
+
+.productTitle{margin-top:4px;}
+.productTitle .divCard{padding:12px;}
+.productTitle .divCard p{margin-bottom:8px;}
+.productTitle .divCard p:last-of-type{margin-bottom:0;}
+
+.productPrice .divCard{padding:12px;}
+
+.productOption .divCard{padding:8px;}
+.productOption .divCard span{display:inline-block; font-size:14px; width:30%; line-height:38px; padding-left:8px;}
+.productOption .divCard select{width:70%; margin-bottom:8px; border-radius:4px; background-color:#fff; border:1px solid #eee; font-size:14px; padding:4px; height:38px;}
+.productOption .divCard select:last-of-type{margin-bottom:0px;}
+
+.productTotal .divCard{padding:12px;}
+
+.buttonList .divCard{width:49%; margin-right:2%; display:inline-block; padding:12px;}
+.buttonList .divCard:last-of-type{margin-right:0px;}
+.buttonList .addCardBtn{border:1px solid #262525; color:#262525;}
+.buttonList .buyNowBtn{border:1px solid #262525; background-color:#262525;}
+
+.productImgDetail .divCard.title{padding:12px; background-color:#666}
+.productImgDetail .divCard.detailImg img{width:100%; border-radius:4px;}

@@ -7,6 +7,12 @@ a:active {color:#252626;}
 .division_line{margin:24px 0px; border:1px solid #eee;}
 .cursor{cursor:pointer;}
 /*********************************************************************************************************************
+    COLOR
+*********************************************************************************************************************/
+.color_black{color:#262525;}
+.color_gray{color:#999;}
+.color_white{color:#fff;}
+/*********************************************************************************************************************
     OFFSET
 *********************************************************************************************************************/
 .width_33_per{width:33.33%;}
@@ -25,6 +31,8 @@ a:active {color:#252626;}
 .typo.normal.large{font-size:20px; font-weight:400;}
 .typo.normal.base{font-size:16px; font-weight:400;}
 .typo.normal.small{font-size:12px; font-weight:400;}
+.typo.normal.tiny{font-size:10px; font-weight:400;}
+.center{text-align:center;}
 /*********************************************************************************************************************
     BUTTON
 *********************************************************************************************************************/
@@ -61,7 +69,7 @@ a:active {color:#252626;}
 @media screen and (max-width:1024px){
   .pc{display:none;}
   .contents_container{width:100%; min-height:100vh; background-color:#f5f5f5;}
-  .contents_container .contents_section{width:360px; min-height:100vh; margin:auto;}
+  .contents_container .contents_section{width:100%; min-height:100vh; margin:auto;}
 
   /*모바일 탑 헤더*/
   .divFixedTopHeader{position:fixed; width:100%; background-color:#fff; box-shadow:5px 10px 10px rgba(0,0,0,0.05); z-index:50; top:0;}
@@ -81,11 +89,13 @@ a:active {color:#252626;}
   .divSlideMenuBG{width:100vw; height:100vh; background-color:rgba(0,0,0,0.0); position:fixed; top:0; z-index:55; display:none;}
   .divSlideMenu .closeBtn{width:50px; padding:18px;}
   .divSlideMenu .closeBtn img{width:100%;}
-  .divSlideMenu .divSlideMenuList{width:95%; margin:auto;}
-  .divSlideMenu .divSlideMenuList td{font-size:16px; text-align:center; border:1px solid #eee;}
+  .divSlideMenu .divSlideMenuList{width:100%; margin:auto;}
+  .divSlideMenu .divSlideMenuList td{font-size:16px; text-align:center; border:1px solid #eee; padding:16px;}
 
-  .divCard{width:95%; margin:auto; margin-bottom:12px; background-color:#fff; box-shadow:10px 10px 10px rgba(0,0,0,0.05); border-radius:4px;}
-
+  .divCardList{padding:8px; padding-bottom:0;}
+  .divCardList:last-of-type{padding-bottom:8px;}
+  .divCard{width:100%; margin:auto; margin-bottom:12px; background-color:#fff; box-shadow:10px 10px 10px rgba(0,0,0,0.05); border-radius:4px;}
+  .divCard:last-of-type{margin-bottom:0px;}
 
 }
 

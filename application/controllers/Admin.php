@@ -186,7 +186,7 @@ class Admin extends CI_Controller {
     $rowCnt = $this->admin_model->getProductList($getData,'CNT');
     $this->_start_layout(array('reset','layout','productMng'),'productMng');
 
-    $this->load->view('admin/productMng/ProductList', array('PAGE'=>$getData['PAGE'], 'GRID_DATA'=>$gridData->result(), 'ROW_CNT'=>$rowCnt->num_rows(), 'GET_DATA'=>$getData));
+    $this->load->view('admin/productMng/productList', array('PAGE'=>$getData['PAGE'], 'GRID_DATA'=>$gridData->result(), 'ROW_CNT'=>$rowCnt->num_rows(), 'GET_DATA'=>$getData));
     $this->load->view('admin/layout/importCalendar');
 
     $this->_end_layout(array('layout','productMng'));
