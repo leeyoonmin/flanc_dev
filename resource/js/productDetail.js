@@ -28,16 +28,20 @@ $('.productOption select').change(function(e){
 $('.buyNowBtn').click(function(e){
   var resultValue = addCard();
   if(resultValue){
-    //location.href="/cart";
+    location.href="/cart";
   }else{
     alert('에러가 발생했습니다.\n관리자에게 문의하세요.');
   }
-
 });
 
 // [오늘의꽃] 상품상세 장바구니 담기 버튼 클릭 이벤트
 $('.addCardBtn').click(function(e){
-  console.log('ADD CART');
+  var resultValue = addCard();
+  if(resultValue){
+    alert('상품을 장바구니에 담았습니다.');
+  }else{
+    alert('에러가 발생했습니다.\n관리자에게 문의하세요.');
+  }
 });
 
 // [오늘의꽃] 장바구니 데이터 생성 및 AJAX 전송

@@ -11,11 +11,37 @@ class Cart extends CI_Controller {
       $this->load->model('cart_model');
   }
 
-  function index(){
+  public function _start_layout($css_list){
+		$this->load->view('layout/metadata'); 															//-- 메타데이터 로드
+		$this->load->view('layout/css',array('css_list'=>$css_list)); 			//-- CSS파일 로드 (배열로 파일명을 던짐)
+		$this->load->view('layout/wrap_start');                             //-- wrap 태그시작
+		$this->load->view('layout/header');                                 //-- 헤더 추가
+		$this->load->view('layout/slideMenu');                                 //-- 슬라이드 메뉴 추가
+		$this->load->view('layout/contents_start');                         //-- 메인 콘텐츠 시작
+	}
 
-  }
+	public function _end_layout($js_list){
+		//--------------------------------------------------------------------------------------------------------
+		$this->load->view('layout/contents_end');                           //-- 메인 콘텐츠 끝
+		$this->load->view('layout/wrap_end');                               //-- wrap 태그끝
+		//--------------------------------------------------------------------------------------------------------
+		$this->load->view('layout/js',array('js_list'=>$js_list));	 			  //-- JS파일 로드 (배열로 파일명을 던짐)
+		//--------------------------------------------------------------------------------------------------------
+	}
 
-	public function addCart()//----------------------------------------------------------------------------------------------// [오늘의꽃] 상품상세 카트 담기 AJAX
+  public function index()//----------------------------------------------------------------------------------------------// [카트] 장바구니 VIEW
+	{
+    $this->_start_layout(array('reset','layout','cart'));                          //-- 레이아웃 시작
+		//--------------------------------------------------------------------------------------------------------
+
+    $CART_LIST = $this->cart_model->getCartListById($this->session->userdata('user_id'));
+		$this->load->view('cart/cart' array('CART_LIST'=>$CART_LIST));
+
+		//--------------------------------------------------------------------------------------------------------
+		$this->_end_layout(array('layout','cart'));                                    //-- 레이아읏 끝
+	}
+
+	public function addCart()//----------------------------------------------------------------------------------------------// [카트 ] 상품상세 카트 담기 AJAX
 	{
     $PRD_ID = $this->input->post('PRD_ID');
     $OPTION = $this->input->post('OPTION');
@@ -33,28 +59,27 @@ class Cart extends CI_Controller {
       'TT_PRICE'  => $TT_PRICE
     );
 
-    $IS_CART = $this->cart_model->duplicateCheck($PRD_ID, $OPTION);
+    $CART_ID = $this->cart_model->duplicateCheck($PRD_ID, $OPTION);
 
-    var_dump($IS_CART);
-    /*
-    $this->cart_model->addCart($param);
-    if(!empty($OPTION)){
-      foreach($OPTION as $item){
-        $param = array(
-          'CART_ID' => $CART_ID,
-          'OPTION_ID' => $item['OPTION_ID'],
-          'OPTION_CD' => $item['OPTION_CD'],
-          'OPTION_VALUE' => $item['OPTION_VALUE'],
-          'OPTION_PRICE' => $item['OPTION_PRICE'],
-        );
-        $this->cart_model->addCartOption($param);
+    if($CART_ID=="N"){
+      $this->cart_model->addCart($param);
+      if(!empty($OPTION)){
+        foreach($OPTION as $item){
+          $param = array(
+            'CART_ID' => $CART_ID,
+            'OPTION_ID' => $item['OPTION_ID'],
+            'OPTION_CD' => $item['OPTION_CD'],
+            'OPTION_VALUE' => $item['OPTION_VALUE'],
+            'OPTION_PRICE' => $item['OPTION_PRICE'],
+          );
+          $this->cart_model->addCartOption($param);
+        }
       }
+    }else{
+      $this->cart_model->updateCartQty($CART_ID);
     }
-    */
-
 
     echo json_encode(array('result'=>true, 'data'=>true));
-
 	}
 
 }

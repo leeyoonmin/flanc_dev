@@ -37,10 +37,11 @@ class Cart_model extends CI_Model {
   public function duplicateCheck($PRD_ID, $OPTION){
     $sql = "
     SELECT
-        GROUP_CONCAT(C.OPTION_ID,C.OPTION_CD) AS PRD_OPTION
+          GROUP_CONCAT(C.OPTION_ID,C.OPTION_CD) AS PRD_OPTION
+        , CART_ID
       FROM (
             SELECT
-              OPTION_ID, OPTION_CD
+              OPTION_ID, OPTION_CD, A.CART_ID
                FROM TB_CART_BASE A
                   , TB_CART_OPTION B
               WHERE A.USER_ID = '".$this->session->userdata('user_id')."'
@@ -51,23 +52,44 @@ class Cart_model extends CI_Model {
     ";
     custlog('sql',__class__,__function__,$this->session->userdata('user_id'),$sql);
     $DB_OPTION = $this->db->query($sql)->row()->PRD_OPTION;
-    $GET_OPTION = "";
-    $ROW_CNT = 1;
-    foreach($OPTION as $item){
-      if($ROW_CNT==1){
-        $GET_OPTION = $GET_OPTION.$item['OPTION_ID'].$GET_OPTION.$item['OPTION_CD'];
-      }else{
-        $GET_OPTION = $GET_OPTION.','.$item['OPTION_ID'].$GET_OPTION.$item['OPTION_CD'];
+    if(!empty($OPTION)){
+      $GET_OPTION = "";
+      $ROW_CNT = 1;
+      foreach($OPTION as $item){
+        if($ROW_CNT==1){
+          $GET_OPTION = $GET_OPTION.$item['OPTION_ID'].$item['OPTION_CD'];
+        }else{
+          $GET_OPTION = $GET_OPTION.','.$item['OPTION_ID'].$item['OPTION_CD'];
+        }
+        $ROW_CNT++;
       }
-      $ROW_CNT++;
-    }
-    var_dump($DB_OPTION);
-    var_dump($GET_OPTION);
-    if($DB_OPTION == $GET_OPTION){
-      return "Y";
+
+      if($DB_OPTION == $GET_OPTION){
+        return $this->db->query($sql)->row()->CART_ID;
+      }else{
+        return "N";
+      }
     }else{
-      return "N";
+      if(empty($DB_OPTION)){
+        return "N";
+      }else{
+        return $this->db->query($sql)->row()->CART_ID;
+      }
     }
+  }
+
+  public function updateCartQty($CART_ID){
+    $sql = "
+      SELECT QTY+1 AS CNT FROM TB_CART_BASE WHERE CART_ID = '".$CART_ID."'
+    ";
+    $CNT = $this->db->query($sql)->row()->CNT;
+
+    $sql = "
+      UPDATE TB_CART_BASE
+         SET QTY = ".$CNT."
+       WHERE CART_ID = '".$CART_ID."'
+    ";
+    return $this->db->query($sql);
   }
 
   public function addCartOption($param){
