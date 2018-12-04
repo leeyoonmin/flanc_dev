@@ -37,7 +37,7 @@
           ";
         }
       echo "
-        <span>".$item->OPTION_NAME."</span><select class=\"SELECT_OPTION\" OPTION_NAME=\"".$item->OPTION_NAME."\" OPTION_VALUE=\"\" OPTION_PRICE=\"\" OPTION_ID=\"".$item->OPTION_ID."\">
+        <span>".$item->OPTION_NAME."</span><select class=\"SELECT_OPTION\" OPTION_NAME=\"".$item->OPTION_NAME."\" OPTION_VALUE=\"\" OPTION_PRICE=\"\" OPTION_ID=\"".$item->OPTION_ID."\" OPTION_CD=\"\">
           <option value=\"0000\">선택안함</option>
       ";
       }
@@ -60,10 +60,23 @@
   </div>
 </div>
 
+<?php
+  if($this->session->userdata('is_login')){
+?>
 <div class="divCardList buttonList">
   <div class="divCard addCardBtn"><p class="typo normal small center ">ADD CART</p></div>
   <div class="divCard buyNowBtn"><p class="typo normal small center color_white ">BUY NOW</p></div>
 </div>
+<?php
+}else{
+?>
+<div class="divCardList requestLogin">
+  <div class="divCard center">
+    <p class="typo normal base center ">구매를 위해서는 로그인이 필요합니다.</p>
+    <a href="/auth/login?PREV_URL=<?=$_SERVER['REQUEST_URI']?>"><div class="loginBtn">로그인하러 가기　<i class="fa fa-angle-double-right"></i></div><a>
+  </div>
+</div>
+<?php }?>
 
 <div class="divCardList productImgDetail">
   <div class="divCard title"><p class="typo normal small center color_white">-　DETAIL SHOT　-</p></div>

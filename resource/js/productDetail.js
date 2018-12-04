@@ -13,6 +13,7 @@ $('.productOption select').change(function(e){
       }else{
         $(this).parents('select').attr('OPTION_PRICE',Number($(this).attr('OPTION_PRICE')));
         $(this).parents('select').attr('OPTION_VALUE',$(this).attr('OPTION_VALUE'));
+        $(this).parents('select').attr('OPTION_CD',$(this).val());
       }
     }
     $('.productOption select').each(function(e){
@@ -25,7 +26,22 @@ $('.productOption select').change(function(e){
 
 // [오늘의꽃] 상품상세 구매하기 버튼 클릭 이벤트
 $('.buyNowBtn').click(function(e){
+  var resultValue = addCard();
+  if(resultValue){
+    //location.href="/cart";
+  }else{
+    alert('에러가 발생했습니다.\n관리자에게 문의하세요.');
+  }
 
+});
+
+// [오늘의꽃] 상품상세 장바구니 담기 버튼 클릭 이벤트
+$('.addCardBtn').click(function(e){
+  console.log('ADD CART');
+});
+
+// [오늘의꽃] 장바구니 데이터 생성 및 AJAX 전송
+function addCard(){
   var PRD_ID = $('.divProductData .HD_PRD_ID').val();
   var PRD_PRICE = $('.TT_PRICE').attr('ORIGIN');
   var TT_PRICE = $('.TT_PRICE').text().replace(',','');
@@ -34,16 +50,11 @@ $('.buyNowBtn').click(function(e){
   var dataSet = {};
   $('.productOption select').each(function(){
     if($(this).attr('OPTION_NAME') != "" && $(this).attr('OPTION_PRICE') != "" && $(this).attr('OPTION_VALUE') != ""){
-      OPTION_ARR[OPTION_CNT] = {OPTION_ID:$(this).attr('OPTION_ID'), OPTION_NAME:$(this).attr('OPTION_NAME'), OPTION_PRICE:$(this).attr('OPTION_PRICE'), OPTION_VALUE:$(this).attr('OPTION_VALUE')};
+      OPTION_ARR[OPTION_CNT] = {OPTION_ID:$(this).attr('OPTION_ID'), OPTION_NAME:$(this).attr('OPTION_NAME'), OPTION_PRICE:$(this).attr('OPTION_PRICE'), OPTION_VALUE:$(this).attr('OPTION_VALUE'), OPTION_CD:$(this).attr('OPTION_CD')};
       OPTION_CNT++;
     }
   });
-  dataSet = {PRD_ID:PRD_ID, OPTION:OPTION_ARR, TT_PRICE:TT_PRICE, PRD_PRICE:PRD_PRICE};
-  doAjaxSync('/cart/addCart',dataSet);
-  //location.href="/cart";
-});
 
-// [오늘의꽃] 상품상세 장바구니 담기 버튼 클릭 이벤트
-$('.addCardBtn').click(function(e){
-  console.log('ADD CART');
-});
+  dataSet = {PRD_ID:PRD_ID, OPTION:OPTION_ARR, TT_PRICE:TT_PRICE, PRD_PRICE:PRD_PRICE};
+  return doAjaxSync('/cart/addCart',dataSet);
+}

@@ -1,0 +1,25 @@
+.title .divCard{background-color:#666;}
+.loginForm .inputTitle{font-size:12px; padding-bottom:4px; padding-left:4px;}
+.loginForm .inputIcon{font-size:12px;}
+.loginForm table:first-of-type{margin-bottom:12px;}
+.loginForm table tr:nth-of-type(1) td:first-of-type{width:50px;}
+.loginForm table tr:nth-of-type(1) td:first-of-type div{border:1px solid #ccc; border-radius:4px 0px 0px 4px; padding:12px; width:50px; text-align:center; font-size:16px; color:#666; border-right:0;}
+.loginForm table tr:nth-of-type(1) td:last-of-type{}
+.loginForm table tr:nth-of-type(1) td:last-of-type div{border:1px solid #ccc; border-radius:0px 4px 4px 0px; width:100%;}
+.loginForm input{border:0; margin-bottom:0; padding:14px; width:100%; border-radius:0px 4px 4px 0px;}
+.submitBtn .divCard{background-color:#262525;}
+.joinBtn .divCard{border:1px solid #262525;}
+.divButton{font-size:14px; text-align:center;}
+.divButton .division{margin-left:16px; margin-right:16px;}
+
+.snsLogin .divCard{width:49%;margin-right:2%; display:inline-block; margin-bottom:8px;}
+.snsLogin .divCard:nth-of-type(even){margin-right:0;}
+.snsLogin .divCard:nth-of-type(3),.snsLogin .divCard:nth-of-type(4){margin-bottom:0;}
+.facebookLogin{background-color:#395498; color:#fff;}
+.facebookLogin a{background-color:#395498; color:#fff;}
+.googleLogin{background-color:#DD5144; color:#fff;}
+.googleLogin a{background-color:#DD5144; color:#fff;}
+.kakaoLogin{background-color:#F6DC0D; color:#45282A;}
+.kakaoLogin a{background-color:#F6DC0D; color:#45282A;}
+.naverLogin{background-color:#02C13A; color:#fff;}
+.naverLogin a{background-color:#02C13A; color:#fff;}

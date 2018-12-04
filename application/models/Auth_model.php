@@ -2,56 +2,57 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Auth_model extends CI_Model {
+  function __construct(){
+      parent::__construct();
+      $this->load->helper('custlog');
+  }
   /***********************************************************************************************
       회원정보 입력 로직
   ***********************************************************************************************/
-  public function insert_user_data($user_data){
-    $this->load->library('common');
-    $indexkey =  $this->common->makeIndexkey('01','01');
-
-    $insert_data = array(
-      'IDXKEY'   => $indexkey ,
-      'ID'       => $user_data['USER_ID'] ,
-      'PASSWORD' => '' ,
-      'NAME'     => $user_data['USER_NM'] ,
-      'SEX'      => $user_data['SEX'] ,
-      'BIRTH'    => $user_data['USER_BIRTH'],
-      'LEVEL'    => '01',
-      'LAST_LOGIN_DT' => date("YmdHis",time()) ,
-      'JOIN_DT'  => date("YmdHis",time())
-    );
-
-    // 비밀번호 암호화
-    $hash = sha1($user_data['USER_PW1']);
-    $insert_data['PASSWORD'] = $hash;
-
+  public function addUser($param){
     $sql = "
-      INSERT INTO TB_CUST_BASE_INFO(
-        INDEXKEY ,
-        ID ,
-        PASSWORD ,
-        NAME ,
-        SEX ,
-        BIRTH ,
-        LEVEL ,
-        LAST_LOGIN_DT ,
-        JOIN_DT
+      INSERT INTO TB_USER_BASE
+      VALUES(
+          '".$param['ID']."'
+        , '".$param['PW']."'
+        , '01'
+        , '".$param['NAME']."'
+        , '".$param['TEL1']."'
+        , '".$param['TEL2']."'
+        , '".$param['TEL3']."'
+        , '".$param['EMAIL']."'
+        , '".$param['SEX']."'
+        , '".$param['BIRTH']."'
+        , NULL
+        , NULL
+        , NULL
+        , NOW()+0
+        , NOW()+0
       )
-      VALUES(?,?,?,?,LPAD(?,2,0),?,LPAD(?,2,0),?,?)";
-    $query = $this->db->query($sql,$insert_data);
-    return $query;
+    ";
+
+    custlog('sql',__class__,__function__,$this->session->userdata('user_id'),$sql);
+    return $this->db->query($sql);
   }
 
-  public function getRepetChkById($user_id){
+  public function getUserDataById($USER_ID){
+    $sql = "
+      SELECT * FROM TB_USER_BASE
+      WHERE ID = '".$USER_ID."'
+    ";
+
+    custlog('sql',__class__,__function__,$this->session->userdata('user_id'),$sql);
+    return $this->db->query($sql)->row();
+  }
+
+  public function getPasswordById($param){
     $sql = "
       SELECT
-        IF(COUNT(1) = 0, 'Y', 'N') AS REPET_YN
-        FROM TB_CUST_BASE_INFO
-       WHERE ID = ?
-      ";
-    $query = $this->db->query($sql,$user_id);
-    $result = $query->result();
-    
-    return $result[0]->REPET_YN;
+        PASSWORD
+        FROM TB_USER_BASE
+       WHERE ID = '".$param['ID']."'
+    ";
+    custlog('sql',__class__,__function__,$this->session->userdata('user_id'),$sql);
+    return $this->db->query($sql)->row()->PASSWORD;
   }
 }

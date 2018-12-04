@@ -12,6 +12,10 @@ a:active {color:#252626;}
 .color_black{color:#262525;}
 .color_gray{color:#999;}
 .color_white{color:#fff;}
+
+.bg_black{background-color:#262525;}
+.bg_gray{background-color:#999;}
+.bg_white{background-color:#fff;}
 /*********************************************************************************************************************
     OFFSET
 *********************************************************************************************************************/
@@ -44,6 +48,30 @@ a:active {color:#252626;}
 .btn.base{width:100px;}
 .btn.large{width:200px; padding:12px 0px 10px 0px;}
 .btn.full{width:100%; padding:12px 0px 10px 0px;}
+
+/*********************************************************************************************************************
+    FORM INPUT
+*********************************************************************************************************************/
+.form .divCard{padding:8px;}
+input{font-size:12px; padding:12px; border:1px solid #ccc; border-radius:4px; margin-bottom:4px;}
+.form input[type='text'], .form input[type='id'], .form input[type='password'], .form input[type='email']{width:100%;}
+.form .TEL1{width:30%; height:40px; margin-bottom:4px; border-radius:4px 0px 0px 4px; border:1px solid #ccc; font-size:12px; padding-left:16px; background-color:#fff;}
+.form .TEL2, .form .TEL3{width:35%; text-align:center;}
+.form .TEL2{border-radius:0px; border-right:0; border-left:0;}
+.form .TEL3{border-radius:0px 4px 4px 0px;}
+.form .inputTitle{padding:4px}
+.form .inputTitle .desc{color:#f2405d; font-size:10px;}
+.form .divCheckBox{padding:10px 8px 6px 8px; border:1px solid #ccc; border-radius:4px; margin-bottom:4px;}
+.form .divCheckBox input[type="checkbox"]{width:16px; height:16px; margin-right:4px; margin-bottom:6px;}
+.form .divCheckBox label{font-size:12px; line-height:16px;}
+.form input[type="email"].EMAIL1{width:45%; border-radius:4px 0px 0px 4px;}
+.form .emailMark{width:11%; border-radius:0; background-color:#fff; border-right:0; border-left:0;}
+.form input[type="email"].EMAIL2{width:44%; border-radius:0px 4px 4px 0px;}
+.form select.EMAIL3{width:100%; height:40px; margin-bottom:4px; border-radius:4px; border:1px solid #ccc; font-size:12px; padding-left:16px; background-color:#fff;}
+.form .divRadioBtn{padding:10px 8px 6px 8px; border:1px solid #ccc; border-radius:4px; margin-bottom:4px;}
+.form .divRadioBtn label{font-size:12px; line-height:16px; margin-right:16px;}
+.form .divRadioBtn input[type="radio"]{width:16px; height:16px; margin-right:4px; margin-bottom:6px;}
+.form .division{margin-bottom:16px;}
 /*********************************************************************************************************************
     콘텐츠 컨테이너
 *********************************************************************************************************************/
@@ -90,7 +118,8 @@ a:active {color:#252626;}
   .divSlideMenu .closeBtn{width:50px; padding:18px;}
   .divSlideMenu .closeBtn img{width:100%;}
   .divSlideMenu .divSlideMenuList{width:100%; margin:auto;}
-  .divSlideMenu .divSlideMenuList td{font-size:16px; text-align:center; border:1px solid #eee; padding:16px;}
+  .divSlideMenu .divSlideMenuList td{font-size:16px; text-align:center; border:1px solid #eee;}
+  .divSlideMenu .divSlideMenuList td a{color:#262525; display:inline-block; padding:16px; width:100%;}
 
   .divCardList{padding:8px; padding-bottom:0;}
   .divCardList:last-of-type{padding-bottom:8px;}
