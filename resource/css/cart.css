@@ -1,0 +1,19 @@
+.divCardList.title .divCard{background:#666;}
+.cartList table td{font-size:12px; text-align:center; padding:4px 2px; border-bottom:1px solid #eee;}
+.cartList table td input[type="checkbox"]{width:20px; height:20px;}
+.cartList table tr:last-of-type td{border-bottom:0;}
+.cartList table td img{width:50px; height:50px;}
+.cartList table .imgTD{width:50px;}
+.cartList table .nameTD{text-align:left; padding-left:8px;}
+.cartList table .nameTD .PRD_NAME{margin-bottom:4px;}
+.cartList table .nameTD .PRD_DESC{font-size:10px;margin-bottom:4px;}
+.cartList table .nameTD .PRD_OPTION{font-size:10px; line-height:12px;}
+.cartList table .qtyTD input{padding:2px 4px; border:1px solid #eee; background-color:#fff; color:#666;}
+.cartList table .qtyTD span{padding:2px 2px;}
+
+.cartButton input{padding:8px; margin-right:8px; background-color:#fff; border-color:#262525;}
+
+.buyTotal p span{font-weight:bold;}
+
+.orderBtn .divCard{background-color:#262525; color:#fff;}
+.orderBtn i{margin-right:8px;}

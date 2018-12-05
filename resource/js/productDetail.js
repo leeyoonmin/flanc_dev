@@ -9,7 +9,9 @@ $('.productOption select').change(function(e){
     var TT_PRICE = 0;
     if($(this).prop('selected')){
       if($(this).val()=='0000'){
-        $(this).parents('select').attr('OPTION_PRICE',0);
+        $(this).parents('select').attr('OPTION_PRICE','');
+        $(this).parents('select').attr('OPTION_VALUE','');
+        $(this).parents('select').attr('OPTION_CD','');
       }else{
         $(this).parents('select').attr('OPTION_PRICE',Number($(this).attr('OPTION_PRICE')));
         $(this).parents('select').attr('OPTION_VALUE',$(this).attr('OPTION_VALUE'));

@@ -35,7 +35,7 @@ class Cart extends CI_Controller {
 		//--------------------------------------------------------------------------------------------------------
 
     $CART_LIST = $this->cart_model->getCartListById($this->session->userdata('user_id'));
-		$this->load->view('cart/cart' array('CART_LIST'=>$CART_LIST));
+		$this->load->view('cart/cart', array('CART_LIST'=>$CART_LIST));
 
 		//--------------------------------------------------------------------------------------------------------
 		$this->_end_layout(array('layout','cart'));                                    //-- 레이아읏 끝
@@ -59,9 +59,9 @@ class Cart extends CI_Controller {
       'TT_PRICE'  => $TT_PRICE
     );
 
-    $CART_ID = $this->cart_model->duplicateCheck($PRD_ID, $OPTION);
+    $dupleCheck = $this->cart_model->duplicateCheck($PRD_ID, $OPTION);
 
-    if($CART_ID=="N"){
+    if(empty($dupleCheck)){
       $this->cart_model->addCart($param);
       if(!empty($OPTION)){
         foreach($OPTION as $item){
@@ -76,10 +76,42 @@ class Cart extends CI_Controller {
         }
       }
     }else{
-      $this->cart_model->updateCartQty($CART_ID);
+      $this->cart_model->updateCartQty($dupleCheck);
     }
 
     echo json_encode(array('result'=>true, 'data'=>true));
 	}
+
+  function deleteCart(){
+    $CART_ID_ARR = $this->input->post('CART_ID_ARR');
+    if($CART_ID_ARR=='ALL'){
+      $CART_ID_ARR_GET_DB = $this->cart_model->getCartIdByUser($this->session->userdata('user_id'));
+      foreach($CART_ID_ARR_GET_DB as $CART_ID){
+        $this->cart_model->deleteCartById($CART_ID->CART_ID);
+      }
+      echo json_encode(array('result'=>true, 'data'=>true));
+    }else{
+      foreach($CART_ID_ARR as $CART_ID){
+        $this->cart_model->deleteCartById($CART_ID);
+      }
+      echo json_encode(array('result'=>true, 'data'=>true));
+    }
+  }
+
+  function updateCartQty(){
+    $CART_ID = $this->input->post('CART_ID');
+    $MODE = $this->input->post('MODE');
+    $QTY = $this->cart_model->getCartQtyById($CART_ID);
+    if($MODE == "PLUS"){
+      $QTY = $QTY + 1;
+    }else{
+      $QTY = $QTY - 1;
+    }
+    $this->cart_model->updateCartQtyByQty($CART_ID,$QTY);
+    if($QTY == 0){
+      $this->cart_model->deleteCartById($CART_ID);
+    }
+    echo json_encode(array('result'=>true, 'data'=>true));
+  }
 
 }

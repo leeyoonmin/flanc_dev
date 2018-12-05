@@ -35,47 +35,50 @@ class Cart_model extends CI_Model {
   }
 
   public function duplicateCheck($PRD_ID, $OPTION){
-    $sql = "
-    SELECT
-          GROUP_CONCAT(C.OPTION_ID,C.OPTION_CD) AS PRD_OPTION
-        , CART_ID
-      FROM (
-            SELECT
-              OPTION_ID, OPTION_CD, A.CART_ID
-               FROM TB_CART_BASE A
-                  , TB_CART_OPTION B
-              WHERE A.USER_ID = '".$this->session->userdata('user_id')."'
-                AND A.PRD_ID = '".$PRD_ID."'
-                AND A.CART_ID = B.CART_ID
-                ORDER BY OPTION_ID, OPTION_CD
-       ) C
-    ";
-    custlog('sql',__class__,__function__,$this->session->userdata('user_id'),$sql);
-    $DB_OPTION = $this->db->query($sql)->row()->PRD_OPTION;
+    $rowCnt = 0;
+    $OPTION_STR1 = NULL;
     if(!empty($OPTION)){
-      $GET_OPTION = "";
-      $ROW_CNT = 1;
       foreach($OPTION as $item){
-        if($ROW_CNT==1){
-          $GET_OPTION = $GET_OPTION.$item['OPTION_ID'].$item['OPTION_CD'];
+        if($rowCnt == 0){
+          $OPTION_STR1 = $item['OPTION_ID'].$item['OPTION_CD'];
         }else{
-          $GET_OPTION = $GET_OPTION.','.$item['OPTION_ID'].$item['OPTION_CD'];
+          $OPTION_STR1 = $OPTION_STR1.",".$item['OPTION_ID'].$item['OPTION_CD'];
         }
-        $ROW_CNT++;
-      }
-
-      if($DB_OPTION == $GET_OPTION){
-        return $this->db->query($sql)->row()->CART_ID;
-      }else{
-        return "N";
-      }
-    }else{
-      if(empty($DB_OPTION)){
-        return "N";
-      }else{
-        return $this->db->query($sql)->row()->CART_ID;
+        $rowCnt++;
       }
     }
+    $sql = "
+    SELECT Z.CART_ID FROM (
+      SELECT
+            A.CART_ID , GROUP_CONCAT(B.OPTION_ID , B.OPTION_CD) AS OPTION_STR
+      	FROM TB_CART_BASE A
+              LEFT JOIN TB_CART_OPTION B
+              ON A.CART_ID = B.CART_ID
+        WHERE A.PRD_ID = '".$PRD_ID."'
+          AND A.USER_ID = '".$this->session->userdata('user_id')."'
+          GROUP BY A.CART_ID
+          ) Z";
+
+     if(!empty($OPTION)){
+       $sql = $sql."
+       WHERE Z.OPTION_STR = '".$OPTION_STR1."'
+       ";
+     }else{
+       $sql = $sql."
+       WHERE Z.OPTION_STR IS NULL
+       ";
+     }
+    custlog('sql',__class__,__function__,$this->session->userdata('user_id'),$sql);
+    $CART_ID =  $this->db->query($sql)->row();
+
+    if($CART_ID == NULL){
+      $CART_ID = NULL;
+    }else{
+      $CART_ID = $CART_ID->CART_ID;
+    }
+
+    return $CART_ID;
+
   }
 
   public function updateCartQty($CART_ID){
@@ -87,6 +90,15 @@ class Cart_model extends CI_Model {
     $sql = "
       UPDATE TB_CART_BASE
          SET QTY = ".$CNT."
+       WHERE CART_ID = '".$CART_ID."'
+    ";
+    return $this->db->query($sql);
+  }
+
+  public function updateCartQtyByQty($CART_ID,$QTY){
+    $sql = "
+      UPDATE TB_CART_BASE
+         SET QTY = ".$QTY."
        WHERE CART_ID = '".$CART_ID."'
     ";
     return $this->db->query($sql);
@@ -106,6 +118,62 @@ class Cart_model extends CI_Model {
 
     custlog('sql',__class__,__function__,$this->session->userdata('user_id'),$sql);
     return $this->db->query($sql);
+  }
+
+  public function getCartListById($USER_ID){
+    $sql = "
+    SELECT
+       A.CART_ID
+     , A.PRD_ID
+     , (SELECT CONCAT('MAIN1.',IMG_EXTENSION) FROM TB_PRODUCT_IMG WHERE PRD_ID = A.PRD_ID AND IMG_NAME = 'MAIN1') AS IMG
+     , C.PRD_NAME
+     , C.PRD_BRIEF_DESC
+     , A.PRD_PRICE
+     , A.QTY
+     , A.TT_PRICE
+      , GROUP_CONCAT(OPTION_VALUE,'(+',FORMAT(OPTION_PRICE,0),')' SEPARATOR '|') AS PRD_OPTION
+      FROM TB_CART_BASE A LEFT JOIN TB_CART_OPTION B
+        ON A.CART_ID = B.CART_ID
+        , TB_PRODUCT_BASE C
+     WHERE A.PRD_ID = C.PRD_ID
+       AND A.USER_ID = '".$USER_ID."'
+    GROUP BY A.CART_ID
+    ";
+    custlog('sql',__class__,__function__,$this->session->userdata('user_id'),$sql);
+    return $this->db->query($sql)->result();
+  }
+
+  public function deleteCartById($CART_ID){
+    $sql = "
+      DELETE FROM TB_CART_BASE
+      WHERE CART_ID = '".$CART_ID."'
+    ";
+    custlog('sql',__class__,__function__,$this->session->userdata('user_id'),$sql);
+    $this->db->query($sql);
+    $sql = "
+      DELETE FROM TB_CART_OPTION
+      WHERE CART_ID = '".$CART_ID."'
+    ";
+    custlog('sql',__class__,__function__,$this->session->userdata('user_id'),$sql);
+    return $this->db->query($sql);
+  }
+
+  public function getCartIdByUser($USER_ID){
+    $sql = "
+      SELECT CART_ID FROM TB_CART_BASE
+      WHERE USER_ID = '".$USER_ID."'
+    ";
+    custlog('sql',__class__,__function__,$this->session->userdata('user_id'),$sql);
+    return $this->db->query($sql)->result();
+  }
+
+  public function getCartQtyById($CART_ID){
+    $sql = "
+      SELECT QTY FROM TB_CART_BASE
+      WHERE CART_ID = '".$CART_ID."'
+    ";
+    custlog('sql',__class__,__function__,$this->session->userdata('user_id'),$sql);
+    return $this->db->query($sql)->row()->QTY;
   }
 
 

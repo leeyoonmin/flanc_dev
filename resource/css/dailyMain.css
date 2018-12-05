@@ -1,0 +1,8 @@
+.contents_section{background-color:#f7ec5d}
+.title{line-height:40px;}
+
+.divSelectDate{position:fixed; top:30%; left:50%; transform:translateX(-50%); text-align:center; display:none;}
+.divSelectMethod{position:fixed; top:20%; left:50%; transform:translateX(-50%); text-align:center;}
+
+.datePicker{display:block; margin:auto; width:200px;text-align:center; font-size:18px; border:0; box-shadow:10px 10px 10px rgba(0,0,0,0.05); margin-top:32px; margin-bottom:24px;}
+.nextBtn{font-size:14px; color:#fff; background-color:#f5911c; border:0; box-shadow:10px 10px 10px rgba(0,0,0,0.05); padding:12px 32px 8px 32px;}
